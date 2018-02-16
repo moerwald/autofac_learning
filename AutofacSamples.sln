@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiWithoutContainer", "DiWit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutofacSimple", "AutofacSimple\AutofacSimple.csproj", "{8D6A748A-45C7-4837-94E9-3963411C7100}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutofacAdvanced", "AutofacAdvanced\AutofacAdvanced.csproj", "{30ECDA85-5C97-48D5-B4BE-ADEFFD7AE5ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8D6A748A-45C7-4837-94E9-3963411C7100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D6A748A-45C7-4837-94E9-3963411C7100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D6A748A-45C7-4837-94E9-3963411C7100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30ECDA85-5C97-48D5-B4BE-ADEFFD7AE5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30ECDA85-5C97-48D5-B4BE-ADEFFD7AE5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30ECDA85-5C97-48D5-B4BE-ADEFFD7AE5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30ECDA85-5C97-48D5-B4BE-ADEFFD7AE5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
