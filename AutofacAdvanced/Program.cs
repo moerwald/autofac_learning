@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Core;
 using System;
 
 namespace AutofacAdvanced
@@ -25,6 +26,23 @@ namespace AutofacAdvanced
         public void Write(string message)
         {
             Console.WriteLine($"[{nameof(EmailLog)}] :{message}");
+        }
+    }
+
+    public class SmsLog : ILog
+    {
+
+        private string phoneNumber;
+
+
+        public SmsLog(string phoneNumber)
+        {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public void Write(string message)
+        {
+            Console.WriteLine($"[{nameof(SmsLog)}]: SMS to {phoneNumber}: {message}");
         }
     }
 
@@ -77,29 +95,60 @@ namespace AutofacAdvanced
         }
     }
 
+
+
     class Program
     {
         static ContainerBuilder _builder;
 
-     
+        static void ProvideDynamicArguments()
+        {
+            _builder = new ContainerBuilder();
+
+            // Option 1: named parameter
+            //_builder.RegisterType<SmsLog>().As<ILog>()
+            //    .WithParameter("phoneNumber", "+123456789");
+
+            // Option 2: typed parameter
+            //_builder.RegisterType<SmsLog>().As<ILog>()
+            //    .WithParameter(new TypedParameter(typeof(string), "+123456789"));
+
+            // Option 3: resolved parameter
+            //_builder.RegisterType<SmsLog>().As<ILog>()
+            //    .WithParameter(
+            //        new ResolvedParameter(
+            //            // predicate
+            //            (propertyInfo, context) => propertyInfo.ParameterType == typeof(string) && propertyInfo.Name == "phoneNumber"
+            //            // value accessor
+            //            , (pi, ctx) => "+123456789"
+            //        )
+            //    );
+
+
+            Random random = new Random();
+            var paramName = "phoneNumber";
+            _builder.Register((c, p) => new SmsLog(p.Named<string>(paramName)))
+                .As<ILog>();
+
+            var container = _builder.Build();
+            var log = container.Resolve<ILog>(new NamedParameter(paramName, random.Next().ToString()));
+            log.Write("TEST");
+        }
+
 
         static void Main(string[] args)
         {
-            //var registrationMethod = nameof(CallEngineCtorWithSpecificIdNumber);
+            var registrationMethod = nameof(ProvideDynamicArguments);
 
+            switch (registrationMethod)
+            {
+                case nameof(ProvideDynamicArguments):
+                    ProvideDynamicArguments();
+                    break;
 
-            //switch (registrationMethod)
-            //{
-     
-
-            //    default:
-            //        throw new NotImplementedException();
-            //}
-
-            // Use the container to create the objects
-            IContainer container = _builder.Build();
-            var car = container.Resolve<Car>();
-            car.Go();
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }
