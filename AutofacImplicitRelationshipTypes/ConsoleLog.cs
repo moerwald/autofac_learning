@@ -2,7 +2,7 @@
 
 namespace AutofacImplicitRelationshipTypes
 {
-    class ConsoleLog : ILog
+    public class ConsoleLog : ILog
     {
 
         public ConsoleLog()

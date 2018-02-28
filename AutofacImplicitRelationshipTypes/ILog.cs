@@ -2,7 +2,7 @@
 
 namespace AutofacImplicitRelationshipTypes
 {
-    interface ILog : IDisposable
+    public interface ILog : IDisposable
     {
         void Write(string message);
     }

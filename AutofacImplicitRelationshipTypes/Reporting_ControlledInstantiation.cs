@@ -5,9 +5,9 @@ using System.Text;
 
 namespace AutofacImplicitRelationshipTypes
 {
-    class Reporting_ControlledInstantiation
+    public class Reporting_ControlledInstantiation
     {
-        Owned<ConsoleLog> log;
+        private readonly Owned<ConsoleLog> log;
 
         public Reporting_ControlledInstantiation(Owned<ConsoleLog> log)
         {
